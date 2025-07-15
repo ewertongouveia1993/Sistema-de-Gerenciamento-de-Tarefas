@@ -8,11 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.treina.recife.sgp.model.Projeto;
 import com.treina.recife.sgp.model.Tarefa;
 import com.treina.recife.sgp.model.Usuario;
+import org.springframework.data.domain.Page;
 
 @Repository
 public interface TarefaRepository extends JpaRepository<Tarefa, Long>{
 
-    List<Tarefa>findByResponsavelProjectId(Projeto id);
+    List<Tarefa>findByResponsavelProjectId(long id);
 
     List<Tarefa>findByUsuario(Usuario usuario);
 
@@ -21,5 +22,7 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long>{
     boolean existsByTitulo(String title);
 
     boolean existsByUsuarioUserId(long userId);
+
+    public Page<Tarefa> findAll(Object pageable);
 
 }
